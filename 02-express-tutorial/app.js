@@ -1,14 +1,20 @@
 const http = require ('http')
-const { url } = require('inspector')
+const { readFileSync} = require('fs');
+
+//get all files
+ const homepage = readFileSync('./index.html')
+
+
 
 const server = http.createServer((req, res)=> {
    // console.log(req.method)
    //console.log(req.url)
   
    //home page
-     if(url ==='/' ){
+   const url = req.url
+     if(url === '/' ){
         res.writeHead(200, {'content-type':'text/html'})
-    res.write('<h2> welcome to the home page</h2>')
+    res.write(homepage)
     res.end()
 
     }
