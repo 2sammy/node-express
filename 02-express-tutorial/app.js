@@ -1,26 +1,16 @@
 const express = require('express')
 const app = express()
-const logger = require('./logger')
-const authorize = require('./authorize')
+ let {people} = require('./data')
 
-//middleware
-app.use([logger, authorize])
+ //middleware/ staic assets
+ app.use(express.static('./methods-public')
+ )
 
-app.get('/', logger, (req, res) => {
-    res.send('hello sam, welcome home')
-})
 
-app.get('/about', (req, res) => {
-    res.send('about  sam')
-})
-app.get('/api/products', (req, res) => {
-    res.send('products')
-})
-app.get('/api/items', (req, res) => {
-    console.log(req.user)
-    res.send('items')
-})
+ app.get('/api/people', (rq, res) => {
+    res.status(200).json({success: true, data: people})
 
+ })
 
 
 
