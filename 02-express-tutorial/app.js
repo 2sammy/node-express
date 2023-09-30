@@ -3,16 +3,23 @@ const app = express()
  let {people} = require('./data')
 
  //middleware/ staic assets
- app.use(express.static('./methods-public')
- )
+ app.use(express.static('./methods-public'))
 
+ //parse data
+ app.use(express.urlencoded({ extended : false}))
 
  app.get('/api/people', (rq, res) => {
     res.status(200).json({success: true, data: people})
 
  })
 
-
+ app.post('/login',(req, res) => {
+    const { name } =req.body
+    if(name) {
+        return res.status(200).send(`welcome ${name}`)
+    }
+     res.status(401).send('please ente your credetials')
+})
 
 
 app.listen(5000, () => {
