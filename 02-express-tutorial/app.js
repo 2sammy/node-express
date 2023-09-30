@@ -17,6 +17,7 @@ app.get('/api/products', (req, res) => {
     res.send('products')
 })
 app.get('/api/items', (req, res) => {
+    console.log(req.user)
     res.send('items')
 })
 
