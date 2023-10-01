@@ -45,6 +45,8 @@ app.post('/login', (req, res) => {
 app.put('/api/people/:id', (req, res) => {
   const { id } = req.params
   const { name } = req.body
+ // console.log(id, name)
+  //res.send('hello sam')
 
   const person = people.find((person) => person.id === Number(id))
 
@@ -62,6 +64,7 @@ app.put('/api/people/:id', (req, res) => {
   res.status(200).json({ success: true, data: newPeople })
 })
 
+
 app.delete('/api/people/:id', (req, res) => {
   const person = people.find((person) => person.id === Number(req.params.id))
   if (!person) {
@@ -72,6 +75,7 @@ app.delete('/api/people/:id', (req, res) => {
   const newPeople = people.filter(
     (person) => person.id !== Number(req.params.id)
   )
+  
   return res.status(200).json({ success: true, data: newPeople })
 })
 
