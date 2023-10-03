@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 
 //routes
-app.get('/', (req, res) => {
+app.get('/hello', (req, res) => {
     res.send('Task Manager App')
 })
 
@@ -18,4 +18,4 @@ app.use('/api/v1/tasks', tasks)
 
 
 const port = 3000
-app.listen(port, console.log(`server is listening on port ${port}`))
+app.listen(port, console.log(`server is listening on port ${port}...`))
