@@ -3,6 +3,7 @@ const tasks = require('./routes/task');
 const connectDB = require('./db/connect');
 require('dotenv').config();
 const notFound = require('./middleware/notFound')
+const errorHandlermiddleware  = require('./middleware/errorHandler')
 
 
 const app = express();
@@ -10,6 +11,7 @@ const app = express();
 // middleware
 app.use(express.static('./public'))
 app.use(express.json());
+app.use(errorHandlermiddleware)
 
 //routes
 app.use('/api/v1/tasks', tasks)
