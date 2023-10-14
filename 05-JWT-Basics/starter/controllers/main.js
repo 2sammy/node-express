@@ -12,11 +12,16 @@ const login = async(req, res) => {
 
     res.status(200).json({msg: 'user created', token})
 
-
-
 }
 
 const dashboard = async (req, res) =>{
+    const authHeader = req.headers.authorization;
+    if(!authHeader || authHeader.startWith('Bearer') ){
+        throw new CustomAPIError('no token provided', 400)
+    }
+    
+
+
     const luckyNumber = Math.floor(Math.random() * 100)
     res.status(200).json({msg : `hello sammy `, secret: `here is your authorised data your luck number is${luckyNumber}`})
 
